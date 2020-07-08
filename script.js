@@ -1,87 +1,87 @@
-var canvasBox = document.getElementById("canvasBox");
-var canvas = document.getElementById("canvas");
-var context = canvas.getContext("2d");
+let canvasBox = document.getElementById(`canvasBox`)
+let canvas = document.getElementById(`canvas`)
+let context = canvas.getContext(`2d`)
 
-var canvasColorInput = document.getElementById("canvasColor");
-var lineColorInput = document.getElementById("lineColor");
-var lineWidthInput = document.getElementById("lineWidth");
-var mushroom = document.getElementById("mushroom");
-var flower = document.getElementById("flower");
-var star = document.getElementById("star");
+let lineColor = document.getElementById(`lineColor`)
+let lineWidth = document.getElementById(`lineWidth`)
+let mushroom = document.getElementById(`mushroom`)
+let flower = document.getElementById(`flower`)
+let star = document.getElementById(`star`)
 
-var drawingMode = false;
-var selectedItem;
+let drawingMode = false
+let selectedImage
 
-canvas.addEventListener("mousedown", startDrawing);
-canvas.addEventListener("mouseover", startDrawing);
-canvas.addEventListener("mouseup", stopDrawing);
-canvas.addEventListener("mouseout", stopDrawing);
-canvas.addEventListener("mousemove", draw);
+canvas.addEventListener(`mousedown`, startDrawing)
+canvas.addEventListener(`mouseover`, startDrawing)
+canvas.addEventListener(`mousemove`, draw)
+canvas.addEventListener(`mouseup`, stopDrawing)
+canvas.addEventListener(`mouseout`, stopDrawing)
 
-canvas.addEventListener("dragenter", dragEnter);
-canvas.addEventListener("dragleave", dragLeave);
-canvas.addEventListener("dragover", dragOver);
-canvas.addEventListener("drop", placeItem);
+canvas.addEventListener(`dragenter`, dragEnter)
+canvas.addEventListener(`dragover`, dragOver)
+canvas.addEventListener(`drop`, drop)
+canvas.addEventListener(`dragleave`, dragLeave)
 
-canvasColorInput.addEventListener("input", setCanvasColor);
-lineColorInput.addEventListener("input", setLineColor);
-lineWidthInput.addEventListener("input", setLineWidth);
-mushroom.addEventListener("dragstart", dragItem);
-flower.addEventListener("dragstart", dragItem);
-star.addEventListener("dragstart", dragItem);
+lineColor.addEventListener(`input`, changeLineColor)
+lineWidth.addEventListener(`input`, changeLineWidth)
+mushroom.addEventListener(`dragstart`, dragStart)
+flower.addEventListener(`dragstart`, dragStart)
+star.addEventListener(`dragstart`, dragStart)
 
 function startDrawing(event) {
-    if (event.buttons == 1) {
-        context.beginPath();
-        drawingMode = true;
-    }
-}
-
-function stopDrawing(event) {
-    context.closePath();
-    drawingMode = false;
+  if (event.buttons == 1) {
+    context.beginPath()
+    drawingMode = true
+  }
 }
 
 function draw(event) {
-    if (drawingMode) {
-        context.lineTo(event.offsetX, event.offsetY);
-        context.stroke();
-    }
+  let x = event.offsetX
+  let y = event.offsetY
+
+  if (drawingMode) {
+    context.lineTo(x, y)
+    context.stroke()
+  }
 }
 
-function setCanvasColor() {
-    canvas.style.backgroundColor = canvasColorInput.value;
+function stopDrawing(event) {
+  context.closePath()
+  drawingMode = false
 }
 
-function setLineColor() {
-    context.strokeStyle = lineColorInput.value;
+function changeLineColor() {
+  context.strokeStyle = lineColor.value
 }
 
-function setLineWidth() {
-    context.lineWidth = lineWidthInput.value;
+function changeLineWidth() {
+  context.lineWidth = lineWidth.value
 }
 
-function dragItem() {
-    selectedItem = this;
+function dragStart() {
+  selectedImage = this
 }
 
 function dragEnter() {
-    canvasBox.classList.add("drag");
-}
-
-function dragLeave() {
-    canvasBox.classList.remove("drag");
+  canvasBox.classList.add(`drag`)
 }
 
 function dragOver(event) {
-    event.preventDefault();
+  event.preventDefault()
 }
 
-function placeItem(event) {
-    canvasBox.classList.remove("drag");
-    canvasBox.appendChild(selectedItem);
+function drop(event) {
+  let x = event.offsetX
+  let y = event.offsetY
 
-    selectedItem.style.position = "absolute";
-    selectedItem.style.left = event.offsetX - (selectedItem.width / 2) + "px";
-    selectedItem.style.top = event.offsetY - (selectedItem.height / 2) + "px";
+  canvasBox.classList.remove(`drag`)
+  canvasBox.appendChild(selectedImage)
+
+  selectedImage.style.position = `absolute`
+  selectedImage.style.left = `${x - selectedImage.width / 2}px`
+  selectedImage.style.top = `${y - selectedImage.height / 2}px`
+}
+
+function dragLeave() {
+  canvasBox.classList.remove(`drag`)
 }

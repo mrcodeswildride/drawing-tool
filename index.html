@@ -2,50 +2,44 @@
 <html>
 
 <head>
-    <title>Drawing Tool</title>
-    <meta name="viewport" content="width=device-width, initial-scale=0.5">
-    <link rel="stylesheet" href="stylesheet.css">
+	<title>Drawing Tool</title>
+	<meta name="viewport" content="width=device-width, initial-scale=0.5">
+	<link href="style.css" rel="stylesheet">
+	<script src="script.js" defer>
+
+	</script>
 </head>
 
 <body>
-    <h1>Drawing Tool</h1>
+	<h1>Drawing Tool</h1>
 
-    <div id="canvasBox">
-        <canvas id="canvas" width="400" height="400"></canvas>
+	<div id="canvasBox">
+		<canvas width="400" height="400" id="canvas"></canvas>
+	</div>
+
+	<div id="sidePanel">
+		<p>
+			Hold down and move the mouse to draw.
+		</p>
+
+		<div class="row">
+			<label for="lineColor">Line color</label>
+      <input type="color" id="lineColor">
     </div>
 
-    <div id="controlPanel">
-        <div>
-            <strong>Hold down and move the mouse to draw.</strong>
-        </div>
-
-        <div>
-            <label for="canvasColor">Canvas color:</label>
-            <input id="canvasColor" type="color" value="#ffffff">
-        </div>
-
-        <div>
-            <label for="lineColor">Line color:</label>
-            <input id="lineColor" type="color">
-        </div>
-
-        <div id="lineWidthControl">
-            <label for="lineWidth">Line width:</label>
-            <input id="lineWidth" type="number" min="1" value="1">
-        </div>
-
-        <div>
-            <strong>Drag the items to place them on the canvas.</strong>
-        </div>
-
-        <div id="dragItems">
-            <img id="mushroom" src="mushroom.png" draggable="true">
-            <img id="flower" src="flower.png" draggable="true">
-            <img id="star" src="star.png" draggable="true">
-        </div>
+    <div class="row" id="lineWidthControl">
+      <label for="lineWidth">Line width</label>
+      <input type="number" min="1" value="1" id="lineWidth">
     </div>
 
-    <script src="script.js"></script>
+    <p>
+      Drag the items to place them on the canvas.
+    </p>
+
+    <img src="mushroom.png" draggable="true" id="mushroom">
+    <img src="flower.png" draggable="true" id="flower">
+    <img src="star.png" draggable="true" id="star">
+  </div>
 </body>
 
 </html>
