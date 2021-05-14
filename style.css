@@ -1,5 +1,6 @@
 body {
   background-color: beige;
+  user-select: none;
 }
 
 #canvasBox,
@@ -14,7 +15,6 @@ body {
   border: 3px solid black;
   margin-right: 30px;
   position: relative;
-  user-select: none;
 }
 
 #canvasBox.drag {
