@@ -1,6 +1,5 @@
 body {
   background-color: beige;
-  user-select: none;
 }
 
 #canvasBox,
@@ -15,6 +14,7 @@ body {
   border: 3px solid black;
   margin-right: 30px;
   position: relative;
+  user-select: none;
 }
 
 #canvasBox.drag {
@@ -25,12 +25,16 @@ body {
   background-color: white;
 }
 
-.row {
+p {
+  font-weight: bold;
+}
+
+#lineColorControl {
   margin-bottom: 20px;
 }
 
-p {
-  font-weight: bold;
+#lineWidthControl {
+  margin-bottom: 30px;
 }
 
 label,
@@ -48,14 +52,6 @@ input {
   padding: 5px;
 }
 
-#lineWidthControl {
-  margin-bottom: 30px;
-}
-
-img {
+#sidePanel > img {
   margin-right: 20px;
-}
-
-#star {
-  margin-right: 0;
 }
